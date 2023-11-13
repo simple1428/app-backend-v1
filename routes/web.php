@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome',['type_menu' => 'dashboard'] );
 });
-Route::middleware(['auth','verified'])->group(function () {
+Route::middleware(['auth','verified','can:dashboard'])->group(function () {
     Route::get('/home', function () {
         return view('pages.blank-page',['type_menu' => 'dashboard'] );
     })->name('home');
