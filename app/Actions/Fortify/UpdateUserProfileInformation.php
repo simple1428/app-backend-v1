@@ -17,9 +17,10 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
      */
     public function update(User $user, array $input): void
     {
+        // dd($input);
         Validator::make($input, [
-            'name' => ['required', 'string', 'max:255'],
-
+            'name' => ['required', 'string', 'max:255', 'min:3'],
+            'phone' => ['nullable','numeric', 'digits_between:10,12'],
             'email' => [
                 'required',
                 'string',
@@ -36,6 +37,8 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             $user->forceFill([
                 'name' => $input['name'],
                 'email' => $input['email'],
+                'phone' => $input['phone'],
+                'bio' => $input['bio'],
             ])->save();
         }
     }
@@ -49,8 +52,9 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
     {
         $user->forceFill([
             'name' => $input['name'],
-            'email' => $input['email'],
-            'email_verified_at' => null,
+            'email' => $input['email'], 
+            'phone' => $input['phone'],
+            'bio' => $input['bio'],
         ])->save();
 
         $user->sendEmailVerificationNotification();

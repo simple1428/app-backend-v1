@@ -17,8 +17,11 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::create([
             'name' => 'Misbah',
             'email' => 'misbahudin1428@gmail.com',
+            'phone' => '089619080300',
+            'bio' =>'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vel, illo.',
             'role' => 'admin',
-            'password' => bcrypt('A7051892b')
+            'password' => bcrypt('A7051892b'),
+            'email_verified_at' => now(),
         ]);
     }
 }
