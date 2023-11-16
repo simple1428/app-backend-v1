@@ -23,5 +23,10 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('A7051892b'),
             'email_verified_at' => now(),
         ]);
+        \App\Models\Category::factory(5)->create();
+        $this->call([
+            ProductSeeder::class
+        ]);
+
     }
 }
