@@ -20,7 +20,8 @@ class ProductFactory extends Factory
             'name' =>fake()->unique()->sentence(2),
             'description' => fake()->text,
             'price' => fake()->randomDigit,
-            'image_url' => fake()->imageUrl($width=200, $height=200)
+            'image_url' => fake()->imageUrl($width=200, $height=200),
+            
 
         ];
     }
