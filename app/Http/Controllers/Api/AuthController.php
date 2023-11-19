@@ -11,7 +11,7 @@ use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
-    public function login(Request $request) { 
+    public function login(Request $request) {
         $request->validate(
             [
                 'email' => 'required|string|email',
@@ -24,7 +24,7 @@ class AuthController extends Controller
                     [
                         'email' => ['email incorrect']
                     ]
-                    ); 
+                    );
                 }
                 if(!Hash::check($request->password, $user->password))
                 {
@@ -41,6 +41,11 @@ class AuthController extends Controller
                     );
     }
     public function logout(Request $request) {
-
+        $request->user()->tokens()->delete();
+        return response()->json(
+            [
+                'message' => 'logout successfully'
+            ]
+        );
     }
 }
